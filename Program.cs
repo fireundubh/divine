@@ -44,28 +44,28 @@ namespace Divine
             if (args.Length == 1)
             {
                 string path = args[0];
-
-                if (Directory.Exists(path))
+                
+                if (PathUtils.IsDir(path))
                 {
                     args = new[]
                     {
 #if DEBUG
                         "-l", "all",
 #endif
-                        "-a", "extract-packages",
+                        "-a", Constants.EXTRACT_PACKAGES,
                         "-s", $"{path}",
                         "-d", $"{path}",
                         "--use-package-name"
                     };
                 }
-                else if (File.Exists(path))
+                else if (PathUtils.IsFile(path))
                 {
                     args = new[]
                     {
 #if DEBUG
                         "-l", "all",
 #endif
-                        "-a", "extract-package",
+                        "-a", Constants.EXTRACT_PACKAGE,
                         "-s", $"{path}",
                         "-d", $"{Path.GetDirectoryName(path)}",
                         "--use-package-name"

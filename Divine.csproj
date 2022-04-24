@@ -58,8 +58,10 @@
     <Compile Include="CLI\CommandLinePackageProcessor.cs" />
     <Compile Include="CLI\CommandLineArguments.cs" />
     <Compile Include="CLI\DivineCommandLineParser.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PathUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
