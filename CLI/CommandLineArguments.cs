@@ -142,60 +142,42 @@ namespace Divine.CLI
         // @formatter:on
         public static LogLevel GetLogLevelByString(string logLevel)
         {
-            switch (logLevel)
+            return logLevel switch
             {
-                case "off":
-                    return LSLib.LS.Enums.LogLevel.OFF;
-                case "fatal":
-                    return LSLib.LS.Enums.LogLevel.FATAL;
-                case "error":
-                    return LSLib.LS.Enums.LogLevel.ERROR;
-                case "warn":
-                    return LSLib.LS.Enums.LogLevel.WARN;
-                case "info":
-                    return LSLib.LS.Enums.LogLevel.INFO;
-                case "debug":
-                    return LSLib.LS.Enums.LogLevel.DEBUG;
-                case "trace":
-                    return LSLib.LS.Enums.LogLevel.TRACE;
-                case "all":
-                    return LSLib.LS.Enums.LogLevel.ALL;
-                default:
-                    return LSLib.LS.Enums.LogLevel.INFO;
-            }
+                "off" => LSLib.LS.Enums.LogLevel.OFF,
+                "fatal" => LSLib.LS.Enums.LogLevel.FATAL,
+                "error" => LSLib.LS.Enums.LogLevel.ERROR,
+                "warn" => LSLib.LS.Enums.LogLevel.WARN,
+                "info" => LSLib.LS.Enums.LogLevel.INFO,
+                "debug" => LSLib.LS.Enums.LogLevel.DEBUG,
+                "trace" => LSLib.LS.Enums.LogLevel.TRACE,
+                "all" => LSLib.LS.Enums.LogLevel.ALL,
+                _ => LSLib.LS.Enums.LogLevel.INFO
+            };
         }
 
         // ReSharper disable once RedundantCaseLabel
         public static Game GetGameByString(string game)
         {
-            switch (game)
+            return game switch
             {
-                case "bg3":
-                    return LSLib.LS.Enums.Game.BaldursGate3;
-                case "dos":
-                    return LSLib.LS.Enums.Game.DivinityOriginalSin;
-                case "dosee":
-                    return LSLib.LS.Enums.Game.DivinityOriginalSinEE;
-                case "dos2":
-                    return LSLib.LS.Enums.Game.DivinityOriginalSin2;
-                case "dos2de":
-                    return LSLib.LS.Enums.Game.DivinityOriginalSin2DE;
-                default:
-                    throw new ArgumentException($"Unknown game: \"{game}\"");
-            }
+                "bg3" => LSLib.LS.Enums.Game.BaldursGate3,
+                "dos" => LSLib.LS.Enums.Game.DivinityOriginalSin,
+                "dosee" => LSLib.LS.Enums.Game.DivinityOriginalSinEE,
+                "dos2" => LSLib.LS.Enums.Game.DivinityOriginalSin2,
+                "dos2de" => LSLib.LS.Enums.Game.DivinityOriginalSin2DE,
+                _ => throw new ArgumentException($"Unknown game: \"{game}\"")
+            };
         }
 
         public static ExportFormat GetModelFormatByString(string format)
         {
-            switch (format.ToLowerInvariant())
+            return format.ToLowerInvariant() switch
             {
-                case "gr2":
-                    return ExportFormat.GR2;
-                case "dae":
-                    return ExportFormat.DAE;
-                default:
-                    throw new ArgumentException($"Unknown model format: {format}");
-            }
+                "gr2" => ExportFormat.GR2,
+                "dae" => ExportFormat.DAE,
+                _ => throw new ArgumentException($"Unknown model format: {format}")
+            };
         }
 
         public static ExportFormat GetModelFormatByPath(string path)
@@ -210,19 +192,14 @@ namespace Divine.CLI
         // ReSharper disable once RedundantCaseLabel
         public static ResourceFormat GetResourceFormatByString(string resourceFormat)
         {
-            switch (resourceFormat)
+            return resourceFormat switch
             {
-                case "lsb":
-                    return ResourceFormat.LSB;
-                case "lsf":
-                    return ResourceFormat.LSF;
-                case "lsj":
-                    return ResourceFormat.LSJ;
-                case "lsx":
-                    return ResourceFormat.LSX;
-                default:
-                    throw new ArgumentException($"Unknown resource format: \"{resourceFormat}\"");
-            }
+                "lsb" => ResourceFormat.LSB,
+                "lsf" => ResourceFormat.LSF,
+                "lsj" => ResourceFormat.LSJ,
+                "lsx" => ResourceFormat.LSX,
+                _ => throw new ArgumentException($"Unknown resource format: \"{resourceFormat}\"")
+            };
         }
 
         public static Dictionary<string, object> GetCompressionOptions(string compressionOption, PackageVersion packageVersion)

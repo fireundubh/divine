@@ -216,29 +216,16 @@ namespace Divine.CLI
         
         public static PackageVersion GetPackageVersionByGame(Game gameVersion)
         {
-            PackageVersion packageVersion;
-            
-            switch (gameVersion)
+            PackageVersion packageVersion = gameVersion switch
             {
-                case Game.DivinityOriginalSin:
-                    packageVersion = PackageVersion.V7;
-                    break;
-                case Game.DivinityOriginalSinEE:
-                    packageVersion = PackageVersion.V9;
-                    break;
-                case Game.DivinityOriginalSin2:
-                    packageVersion = PackageVersion.V10;
-                    break;
-                case Game.DivinityOriginalSin2DE:
-                    packageVersion = PackageVersion.V13;
-                    break;
-                case Game.BaldursGate3:
-                    packageVersion = PackageVersion.V16;
-                    break;
-                default:
-                    throw new ArgumentException($"Unknown game: \"{gameVersion}\"");
-            }
-            
+                Game.DivinityOriginalSin => PackageVersion.V7,
+                Game.DivinityOriginalSinEE => PackageVersion.V9,
+                Game.DivinityOriginalSin2 => PackageVersion.V10,
+                Game.DivinityOriginalSin2DE => PackageVersion.V13,
+                Game.BaldursGate3 => PackageVersion.V16,
+                _ => throw new ArgumentException($"Unknown game: \"{gameVersion}\"")
+            };
+
             CommandLineLogger.LogDebug($"Using package version: {packageVersion}");
 
             return packageVersion;
@@ -253,27 +240,16 @@ namespace Divine.CLI
                 using (var reader = new PackageReader(packagePath))
                 {
                     Package package = reader.Read();
-                    switch (package.Version)
+                    gameVersion = package.Version switch
                     {
-                        case PackageVersion.V7:
-                            gameVersion = Game.DivinityOriginalSin;
-                            break;
-                        case PackageVersion.V9:
-                            gameVersion = Game.DivinityOriginalSinEE;
-                            break;
-                        case PackageVersion.V10:
-                            gameVersion = Game.DivinityOriginalSin2;
-                            break;
-                        case PackageVersion.V13:
-                            gameVersion = Game.DivinityOriginalSin2DE;
-                            break;
-                        case PackageVersion.V15:
-                        case PackageVersion.V16:
-                            gameVersion = Game.BaldursGate3;
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
+                        PackageVersion.V7 => Game.DivinityOriginalSin,
+                        PackageVersion.V9 => Game.DivinityOriginalSinEE,
+                        PackageVersion.V10 => Game.DivinityOriginalSin2,
+                        PackageVersion.V13 => Game.DivinityOriginalSin2DE,
+                        PackageVersion.V15 => Game.BaldursGate3,
+                        PackageVersion.V16 => Game.BaldursGate3,
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
                 }
             }
             catch (Exception e)
