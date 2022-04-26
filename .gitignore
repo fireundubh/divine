@@ -40,8 +40,10 @@ _ReSharper.Caches/
 *.vspx
 
 /.vs
+/bin
 /ipch
 /Debug
+/obj
 /Release
 /x64
 
