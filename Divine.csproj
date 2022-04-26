@@ -38,9 +38,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLineArgumentsParser, Version=3.0.22.0, Culture=neutral, PublicKeyToken=2990a79b704d8378, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineArgumentsParser.3.0.22\lib\net452\CommandLineArgumentsParser.dll</HintPath>
-    </Reference>
+    <PackageReference Include="CommandLineArgumentsParser" Version="3.0.22" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,6 +47,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="LSLib">
+      <HintPath>..\LSLib\bin\Release\LSLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLI\CommandLineActions.cs" />
@@ -65,20 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LSLib\LSLib.csproj">
-      <Project>{46372c50-4288-4b8e-af21-c934560600e0}</Project>
-      <Name>LSLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
