@@ -64,9 +64,7 @@ namespace Divine.CLI
             };
 
             if (!string.IsNullOrWhiteSpace(file))
-            {
                 exporter.Options.InputPath = file;
-            }
 
 #if !DEBUG
             try
@@ -89,9 +87,7 @@ namespace Divine.CLI
             string[] files = Directory.GetFiles(sourcePath, $"*.{inputFormat}");
 
             if (files.Length == 0)
-            {
                 CommandLineLogger.LogFatal($"Batch convert failed: *.{inputFormat} not found in source path", 1);
-            }
 
             foreach (string file in files)
             {

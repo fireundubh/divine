@@ -24,17 +24,13 @@ namespace Divine.CLI
         private static void Log(LogLevel logLevel, string message, int errorCode = -1)
         {
             if (LogLevelOption == LogLevel.OFF && logLevel != LogLevel.FATAL)
-            {
                 return;
-            }
 
             switch (logLevel)
             {
                 case LogLevel.FATAL:
                     if (LogLevelOption > LogLevel.OFF)
-                    {
                         Console.WriteLine($"[FATAL] {message}");
-                    }
 
                     switch (errorCode)
                     {
@@ -50,45 +46,35 @@ namespace Divine.CLI
 
                 case LogLevel.ERROR:
                     if (LogLevelOption < logLevel)
-                    {
                         break;
-                    }
 
                     Console.WriteLine($"[ERROR] {message}");
                     break;
 
                 case LogLevel.WARN:
                     if (LogLevelOption < logLevel)
-                    {
                         break;
-                    }
 
                     Console.WriteLine($"[WARN] {message}");
                     break;
 
                 case LogLevel.INFO:
                     if (LogLevelOption < logLevel)
-                    {
                         break;
-                    }
 
                     Console.WriteLine($"[INFO] {message}");
                     break;
 
                 case LogLevel.DEBUG:
                     if (LogLevelOption < logLevel)
-                    {
                         break;
-                    }
 
                     Console.WriteLine($"[DEBUG] {message}");
                     break;
 
                 case LogLevel.TRACE:
                     if (LogLevelOption < logLevel)
-                    {
                         break;
-                    }
 
                     Console.WriteLine($"[TRACE] {message}");
                     break;

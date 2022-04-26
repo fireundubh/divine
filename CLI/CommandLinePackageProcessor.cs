@@ -28,10 +28,8 @@ namespace Divine.CLI
         private static void ExtractSingleFile(string packagePath, string destinationPath, string packagedPath)
         {
             if (string.Equals(Args.Game, Constants.AUTODETECT, StringComparison.OrdinalIgnoreCase))
-            {
                 CommandLineActions.Game = GetGameByPackageVersion(packagePath);
-            }
-            
+
             try
             {
                 using (var reader = new PackageReader(packagePath))
@@ -79,10 +77,8 @@ namespace Divine.CLI
         private static void ListPackageFiles(string packagePath, Func<AbstractFileInfo, bool> filter = null)
         {
             if (string.Equals(Args.Game, Constants.AUTODETECT, StringComparison.OrdinalIgnoreCase))
-            {
                 CommandLineActions.Game = GetGameByPackageVersion(packagePath);
-            }
-            
+
             try
             {
                 using (var reader = new PackageReader(packagePath))
@@ -92,14 +88,10 @@ namespace Divine.CLI
 	                var files = package.Files;
 
 	                if (filter != null)
-	                {
-		                files = files.FindAll(obj => filter(obj));
-	                }
+                        files = files.FindAll(obj => filter(obj));
 
                     foreach (AbstractFileInfo fileInfo in files.OrderBy(obj => obj.Name))
-                    {
                         Console.WriteLine($"{fileInfo.Name}\t{fileInfo.Size()}\t{fileInfo.CRC()}");
-                    }
                 }
             }
             catch (NotAPackageException)
@@ -133,13 +125,9 @@ namespace Divine.CLI
             string[] files;
             
             if (string.Equals(Args.Action, Constants.EXTRACT_PACKAGES, StringComparison.OrdinalIgnoreCase))
-            {
                 files = Directory.GetFiles(CommandLineActions.SourcePath, "*.pak");
-            }
             else
-            {
                 files = Directory.GetFiles(CommandLineActions.SourcePath, $"*.{Args.InputFormat}");
-            }
 
             foreach (string file in files)
             {
@@ -156,15 +144,11 @@ namespace Divine.CLI
             if (Args.UsePackageName)
             {
                 if (string.IsNullOrWhiteSpace(destinationPath))
-                {
                     destinationPath = Path.GetDirectoryName(sourcePath);
-                }
 
                 if (string.IsNullOrWhiteSpace(destinationPath))
-                {
                     destinationPath = Directory.GetCurrentDirectory();
-                }
-                
+
                 return Path.GetFullPath(Path.Combine(destinationPath, Path.GetFileNameWithoutExtension(sourcePath)));
             }
 
@@ -205,9 +189,7 @@ namespace Divine.CLI
             }
             
             if (string.Equals(Args.Game, Constants.AUTODETECT, StringComparison.OrdinalIgnoreCase))
-            {
                 CommandLineActions.Game = GetGameByPackageVersion(file);
-            }
 
             try
             {

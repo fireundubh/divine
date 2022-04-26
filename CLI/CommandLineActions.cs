@@ -155,9 +155,7 @@ namespace Divine.CLI
                     CommandLineLogger.LogDebug("Using graphics options:");
 
                     foreach (var x in GR2Options)
-                    {
                         CommandLineLogger.LogDebug($"   {x.Key} = {x.Value}");
-                    }
 #endif
 
                     if (GR2Options["conform"])
@@ -185,16 +183,12 @@ namespace Divine.CLI
                     }
                 }
                 else
-                {
                     expression = new Regex("^" + Regex.Escape(args.Expression).Replace(@"\*", ".*").Replace(@"\?", ".") + "$", RegexOptions.Singleline | RegexOptions.Compiled);
-                }
 
                 filter = obj => obj.Name.Like(expression);
             }
             else
-            {
                 filter = obj => true;
-            }
 
             switch (args.Action)
             {
@@ -245,9 +239,7 @@ namespace Divine.CLI
             CommandLineLogger.LogDebug($"Using path: {path}");
 
             if (string.IsNullOrWhiteSpace(path))
-            {
                 CommandLineLogger.LogFatal($"Cannot parse path from input: {path}", 1);
-            }
 
             Uri uri = null;
             try

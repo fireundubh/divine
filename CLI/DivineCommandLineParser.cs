@@ -23,17 +23,11 @@ namespace Divine.CLI
             string line = string.Empty;
 
             if (argument.ShortName.HasValue && !string.IsNullOrWhiteSpace(argument.LongName))
-            {
                 line = $"  -{argument.ShortName}, --{argument.LongName}";
-            }
             else if (argument.ShortName.HasValue)
-            {
                 line = $"  -{argument.ShortName}";
-            }
             else if (!string.IsNullOrWhiteSpace(argument.LongName))
-            {
                 line = $"  --{argument.LongName}";
-            }
 
             if (!string.IsNullOrWhiteSpace(line) && !string.IsNullOrWhiteSpace(argument.Description))
             {
@@ -42,16 +36,12 @@ namespace Divine.CLI
                 list.Add(newline + line.PadRight(line.Length + Math.Abs(line.Length - offset)) + argument.Description);
             }
             else
-            {
                 list.Add(newline + line);
-            }
 
             if (argument is EnumeratedValueArgument<string> enumValueArg)
             {
                 if (!string.IsNullOrWhiteSpace(enumValueArg.DefaultValue))
-                {
                     list.Add($"    Default Value:{newline}      {enumValueArg.DefaultValue}");
-                }
 
                 string allowedValues = string.Join(", ", enumValueArg.AllowedValues);
                 string formattedAllowedValues = WordWrap(allowedValues, 76, 6).TrimEnd();
@@ -76,21 +66,15 @@ namespace Divine.CLI
             lines.Add(newline + "required arguments:");
 
             foreach (var argument in Arguments.Where(argument => !argument.Optional))
-            {
                 AddFormattedArgument(argument, lines, newline);
-            }
 
             lines.Add(newline + "optional arguments:");
 
             foreach (var argument in Arguments.Where(argument => argument.Optional))
-            {
                 AddFormattedArgument(argument, lines, newline);
-            }
 
             if (!string.IsNullOrWhiteSpace(ShowUsageFooter))
-            {
                 lines.Add(ShowUsageFooter);
-            }
 
             outputStream.Write(string.Join(newline, lines));
             outputStream.WriteLine();

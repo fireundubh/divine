@@ -202,9 +202,7 @@ namespace Divine.CLI
         {
             string extension = Path.GetExtension(path);
             if (extension != null)
-            {
                 return GetModelFormatByString(extension.Substring(1));
-            }
 
             throw new ArgumentException($"Could not determine model format from filename: {path}");
         }
@@ -300,14 +298,10 @@ namespace Divine.CLI
             };
 
             if (options == null)
-            {
                 return results;
-            }
 
             foreach (string option in options.Where(option => results.Keys.Contains(option)))
-            {
                 results[option] = true;
-            }
 
             return results;
         }

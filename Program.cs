@@ -87,9 +87,7 @@ namespace Divine
 #endif
 
             if (parser.ParsingSucceeded)
-            {
                 CommandLineActions.Run(argv);
-            }
         }
     }
 }
