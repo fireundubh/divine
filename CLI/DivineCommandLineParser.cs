@@ -65,12 +65,12 @@ namespace Divine.CLI
 
             lines.Add(newline + "required arguments:");
 
-            foreach (var argument in Arguments.Where(argument => !argument.Optional))
+            foreach (Argument argument in Arguments.Where(argument => argument is { Optional: false }))
                 AddFormattedArgument(argument, lines, newline);
 
             lines.Add(newline + "optional arguments:");
 
-            foreach (var argument in Arguments.Where(argument => argument.Optional))
+            foreach (Argument argument in Arguments.Where(argument => argument is { Optional: true }))
                 AddFormattedArgument(argument, lines, newline);
 
             if (!string.IsNullOrWhiteSpace(ShowUsageFooter))
