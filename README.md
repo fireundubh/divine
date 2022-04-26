@@ -114,13 +114,13 @@ divine -a extract-single-file -g {game} -s {source_file} -d {target_file}
 
 ```shell
 # Batch Convert Models
-divine -g {game} -s {source_dir} -d {target_dir} -a convert-models -e {values} -i {input_format} -o {output_format}
+divine -a convert-models -g {game} -s {source_dir} -d {target_dir} -e {values} -i {input_format} -o {output_format}
 
 # Batch Convert Resources
-divine -g {game} -s {source_dir} -d {target_dir} -a convert-resources -i {input_format} -o {output_format}
+divine -a convert-resources -g {game} -s {source_dir} -d {target_dir} -i {input_format} -o {output_format}
 
 # Batch Extract Packages
-divine -g {game} -s {source_dir} -d {target_dir} -a extract-packages
+divine -a extract-packages -g {game} -s {source_dir} -d {target_dir}
 ```
 
 # Drag-and-Drop Support
@@ -152,7 +152,7 @@ divine "LetThereBeTooltips_c03acb8a-03b9-4c79-84ff-3784e97774da.pak"
 
 # Building from Source Code
 
-To build the tools you'll need to get the following dependencies:
+To build the project, you'll need the following dependencies:
 
-- [LSLib](https://github.com/Norbyte/lslib)
+- [LSLib](https://github.com/Norbyte/lslib) (Divine links `LSLib.dll` for fast builds, but you can link the project, if desired.)
 - [CommandLineArgumentsParser](https://www.nuget.org/packages/CommandLineArgumentsParser/)
